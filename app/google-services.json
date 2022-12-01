@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "234247434134",
+    "project_id": "bahaafinalproject",
+    "storage_bucket": "bahaafinalproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234247434134:android:2fbc085be794c0d6ef37b7",
+        "android_client_info": {
+          "package_name": "hajar.ashwah.ramzor.bahaafinalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234247434134-i8f0ntnl5d64sh882jm46g89o3if4f3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqAdUtwftgOBQqXyujFS01b2-XARasNv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234247434134-i8f0ntnl5d64sh882jm46g89o3if4f3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
