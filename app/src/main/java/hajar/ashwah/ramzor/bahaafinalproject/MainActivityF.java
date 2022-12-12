@@ -20,10 +20,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import hajar.ashwah.ramzor.bahaafinalproject.data.Appointment;
+import hajar.ashwah.ramzor.bahaafinalproject.data.AppointmentAdapter;
+
 public class MainActivityF extends AppCompatActivity {
     private ListView List;
     private ImageView btnadd;
     private android.widget.SearchView searchView;
+    private AppointmentAdapter appointmentAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,12 @@ public class MainActivityF extends AppCompatActivity {
         //يبني واجهة للمستعمل بحيث تبني كل الكائنات الموجودة في ملف التنسيق xml
         setContentView(R.layout.activity_main);
         searchView=findViewById(R.id.searchview);
+        appointmentAdapter=new AppointmentAdapter(getApplicationContext());
         List=findViewById(R.id.List);
+        List.setAdapter(appointmentAdapter);
         btnadd=findViewById(R.id.btnadd);
+        readAppointmentFromFireBase();
+
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,23 +49,6 @@ public class MainActivityF extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -112,14 +104,16 @@ public class MainActivityF extends AppCompatActivity {
 
 
     }
-    private void readMahamaFromFireBase()
+    private void readAppointmentFromFireBase()
     {
         //مؤشر لجذر قاعدة البيانات التابعة للمشروع
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         //listener لمراقبة اي تغيير يحدث تحت الجذر المحدد
         //اي تغيير بقيمة صفة او حذف او اضافة كائن يتم الاعلام ال listener
         //عندها يتم تنزيل كل المعطيات تحت الجذر
-        reference.child("Mahama").addValueEventListener(new ValueEventListener() {
+        String Owner=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance().getReference().child("Appointment")
+      .child(Owner).addValueEventListener(new ValueEventListener() {
             //دالة معالجة حدث عند تغيير اي قيمة
 
             /**
@@ -128,18 +122,50 @@ public class MainActivityF extends AppCompatActivity {
              */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                appointmentAdapter.clear();
+
+                for (DataSnapshot d : snapshot.getChildren()){
+                    Appointment value = d.getValue(Appointment.class);
+
+                    appointmentAdapter.add(value);
+                }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+    error.toException().printStackTrace();
             }
         });
 
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

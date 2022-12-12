@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,12 +13,11 @@ import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import hajar.ashwah.ramzor.bahaafinalproject.R;
 
 public class AppointmentAdapter extends ArrayAdapter<Appointment> {
-    public AppointmentAdapter(@NonNull Context context, int resource) {
+    public AppointmentAdapter(@NonNull Context context) {
         super(context, R.layout.appointment_item);
 
     }
@@ -37,13 +34,15 @@ public class AppointmentAdapter extends ArrayAdapter<Appointment> {
         TextView tvCondition=vitem.findViewById(R.id.tvCondition);
         RatingBar ratingBar=vitem.findViewById(R.id.ratingBar);
         //getting data source
+
+
         final Appointment appointment=getItem(position);
         String pattern = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(appointment.getDate());
+       // String date = simpleDateFormat.format(appointment.getDate());
+        //todo fix date format
 
-
-        tvTime.setText(date);
+        tvTime.setText("");
         DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT);
         String time = dateFormat.format(appointment.getTime());
 

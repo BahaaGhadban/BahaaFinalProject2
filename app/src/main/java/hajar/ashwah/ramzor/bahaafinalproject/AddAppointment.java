@@ -45,9 +45,9 @@ public class AddAppointment extends AppCompatActivity
         etFullName = findViewById(R.id.etFullName);
         etPhone = findViewById(R.id.etPhone);
         etCondition = findViewById(R.id.etCondition);
-        seekBar = findViewById(R.id.seekBar);
-        btnCancel = findViewById(R.id.btncancel);
+        btnCancel = findViewById(R.id.btnCancel);
         btnSave = findViewById(R.id.btnSave);
+        seekBar = findViewById(R.id.seekBar);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
